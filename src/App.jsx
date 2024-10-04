@@ -1,12 +1,18 @@
 import './App.css'
-import Thread from './Thread.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './Home.jsx';
+import { MakeThread } from './MakeThread.jsx';
 
-function App() {
+
+const App = () => {
   return (
     <>
-      <div>
-        <Thread />
-      </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} element={<Home />}/>
+        <Route path={'/threads/new'} element={<MakeThread />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }
