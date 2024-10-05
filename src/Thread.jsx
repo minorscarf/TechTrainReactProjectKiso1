@@ -25,7 +25,7 @@ export const Thread = () => {
             <Grid container spacing={2} direction="column" alignItems="center">
               {threadTopic && threadTopic.map((thread, index) => (  
                   <Grid item xs={12} key={index} style={{width: '30%', maxHeight: '70px'}}>
-                    <Link to={`/threads/${thread.id}`}>
+                    <Link to={`/threads/${thread.id}`} state={{title:thread.title}}>
                       <Card style={{cursor: 'pointer'}}>
                           <CardContent>
                               <Typography>

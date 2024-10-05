@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";  // useParamsをインポートしてURLパラメータを取得
+import { Link, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom"; 
+import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 
 export const Comment = () => {
-    const { thread_id } = useParams();  // URLからthread_idを取得
+    const { thread_id } = useParams();  
     const BaseUrl = `https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts`;  // 動的にURLを生成
     const [threadComment, setThreadComment] = useState([]);
     const [sendComment, setSendComment] = useState('');
+    const location = useLocation();
+    const {title} = location.state;
 
     useEffect(() => {
         fetch(BaseUrl)
@@ -46,14 +49,21 @@ export const Comment = () => {
 
     return (
         <section>
-            <h2>スレッドID: {thread_id}</h2> 
+            <h2>スレッドタイトル: {title}</h2> 
             
-            <ul>
-                {threadComment.map((comment, index) => (
-                    <li key={index}>{comment.post}</li>
-
-                ))}
-            </ul>
+            <Grid container spacing={2} direction="column" alignItems="center">
+              {threadComment && threadComment.map((comment, index) => (  
+                  <Grid item xs={12} key={index} style={{width: '30%', maxHeight: '70px'}}>
+                      <Card>
+                          <CardContent>
+                              <Typography>
+                                  {comment.post}  
+                              </Typography>
+                          </CardContent>
+                      </Card>
+                  </Grid>
+              ))}
+            </Grid>
 
             <input 
                 type="text" 
