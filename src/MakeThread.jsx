@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import {baseUrl} from "./App.jsx"
 
 export const MakeThread = () => {
-    const ApiUrl = "https://railway.bulletinboard.techtrain.dev/threads"
     const [threadTitle,setThreadTitle] = useState('');
 
     const sendThread = async () => {
@@ -12,7 +12,7 @@ export const MakeThread = () => {
         }
 
         try {
-            const response = await fetch(ApiUrl, {
+            const response = await fetch(`${baseUrl}/threads`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

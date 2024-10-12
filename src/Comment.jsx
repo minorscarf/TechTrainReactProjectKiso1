@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom"; 
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import {baseUrl} from "./App.jsx"
 
 export const Comment = () => {
     const { thread_id } = useParams();  
-    const BaseUrl = `https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts`;  // 動的にURLを生成
+    const BaseUrl = `${baseUrl}/threads/${thread_id}/posts`;
     const [threadComment, setThreadComment] = useState([]);
     const [sendComment, setSendComment] = useState('');
     const location = useLocation();
@@ -72,7 +73,7 @@ export const Comment = () => {
                 placeholder="コメントを入力"
             />
 
-            <button onClick={PostComment}>コメントを投稿</button>
+            <button disabled={sendComment.trim().length==0} onClick={PostComment}>コメントを投稿</button>
             <button>
                 <Link to={'/'}>ホームに戻る</Link>
             </button>

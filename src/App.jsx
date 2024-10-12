@@ -4,8 +4,9 @@ import Home from './Home.jsx';
 import { MakeThread } from './MakeThread.jsx';
 import { Comment } from './Comment.jsx';
 
-
+export const baseUrl = "https://railway.bulletinboard.techtrain.dev"; 
 const App = () => {
+
   return (
     <>
     <BrowserRouter>
